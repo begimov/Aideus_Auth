@@ -9,10 +9,10 @@ return [
     ],
     'db' => [
       'driver' => 'mysql',
-      'host' => 'localhost',
-      'name' => 'aideuscomsite',
-      'username' => 'root',
-      'password' => '1331',
+      'host' => '127.0.0.1',
+      'name' => 'aideuscom',
+      'username' => 'aideus',
+      'password' => 'xyzAxyz',
       'charset' => 'utf8',
       'collation' => 'utf8_unicode',
       'prefix' => ''
