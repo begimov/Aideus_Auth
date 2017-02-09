@@ -2,6 +2,7 @@
 
 use Slim\App;
 use Noodlehaus\Config;
+use Aideus\User\User;
 
 session_cache_limiter(false);
 session_start();
@@ -16,4 +17,10 @@ $settings = require INC_ROOT . '/app/config/' . MODE . '.php';
 
 $app = new App($settings);
 
-print_r($app->getContainer()->get('app')['db']['driver']);
+require 'database.php';
+
+$container = $app->getContainer();
+
+$container['user'] = function($container) {
+    return new User;
+};

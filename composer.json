@@ -1,4 +1,9 @@
 {
+    "autoload": {
+        "psr-4": {
+            "Aideus\\": "app/Aideus"
+        }
+    },
     "require": {
         "slim/slim": "~3.0",
         "slim/views": "0.1.*",
