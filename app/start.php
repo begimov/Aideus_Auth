@@ -12,6 +12,8 @@ session_start();
 
 ini_set('display_errors', 'On');
 
+date_default_timezone_set('Europe/Moscow');
+
 define('INC_ROOT', dirname(__DIR__));
 define('MODE', 'development');
 

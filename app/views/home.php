@@ -5,6 +5,6 @@
 {% block content %}
 <h1>User List</h1>
 <ul>
-    <li><a href="{{ path_for('profile', { 'name': name }) }}">{{ name }}</a></li>
+    <li><a href="{{ path_for('home', { 'name': name }) }}">{{ name }}</a></li>
 </ul>
 {% endblock %}
