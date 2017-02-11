@@ -5,6 +5,7 @@ use Slim\Views\Twig;
 use Slim\Flash\Messages;
 use Noodlehaus\Config;
 use Aideus\User\User;
+use Aideus\Helpers\Hash;
 
 session_cache_limiter(false);
 session_start();
@@ -17,9 +18,6 @@ define('MODE', 'development');
 require INC_ROOT . '/vendor/autoload.php';
 $settings = require INC_ROOT . '/app/config/' . MODE . '.php';
 
-// var_dump($settings);
-// echo '<br/><br/>';
-
 $app = new App($settings);
 
 require 'database.php';
@@ -27,12 +25,16 @@ require 'routes.php';
 
 $container = $app->getContainer();
 
-$container['user'] = function($container) {
+$container['user'] = $container->factory(function($c) {
     return new User;
-};
+});
 
 $container['flash'] = function() {
   return new Messages();
+};
+
+$container['hash'] = function($c) {
+  return new Hash($c);
 };
 
 $container['view'] = function ($c) {
@@ -44,5 +46,3 @@ $container['view'] = function ($c) {
     $view->addExtension(new Slim\Views\TwigExtension($c['router'], $basePath));
     return $view;
 };
-
-// var_dump($container);
