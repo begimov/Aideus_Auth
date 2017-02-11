@@ -6,6 +6,7 @@ use Slim\Flash\Messages;
 use Noodlehaus\Config;
 use Aideus\User\User;
 use Aideus\Helpers\Hash;
+use Aideus\Validation\Validator;
 
 session_cache_limiter(false);
 session_start();
@@ -37,6 +38,10 @@ $container['flash'] = function() {
 
 $container['hash'] = function($c) {
   return new Hash($c);
+};
+
+$container['validator'] = function($c) {
+  return new Validator();
 };
 
 $container['view'] = function ($c) {
