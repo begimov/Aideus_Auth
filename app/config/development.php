@@ -1,6 +1,9 @@
 <?php
 
 return [
+  'settings' => [
+        'displayErrorDetails' => true,
+    ],
   'app' => [
     'url' => 'http://localhost:8000',
     'hash' => [
