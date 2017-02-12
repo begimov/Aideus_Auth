@@ -3,6 +3,7 @@
 {% block title %}Sign up{% endblock %}
 
 {% block content %}
+<div class="container">
 <h1>Sign up</h1>
 <div class="row">
   <div class="col-md-6">
@@ -39,5 +40,6 @@
     </form>
   </div>
   <div class="col-md-6"></div>
+</div>
 </div>
 {% endblock %}
