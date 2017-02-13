@@ -15,10 +15,15 @@
       <ul class="nav navbar-nav">
         <!-- <li><a href="{{ path_for('home', { 'name': '' }) }}">Home</a></li> -->
         <li><a href="{{ path_for('research') }}">Research</a></li>
-        <li><a href="{{ path_for('signup') }}">Community</a></li>
+        <li><a href="#">Community</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="{{ path_for('signup') }}">Sign up</a></li>
+        {% if auth %}
+            <li><a href="#">Signed in as {{ auth.getName() }}</a></li>
+        {% else %}
+            <li><a href="{{ path_for('signup') }}">Sign up</a></li>
+            <li><a href="{{ path_for('signin') }}">Sign in</a></li>
+        {% endif %}
       </ul>
     </div>
   </div>

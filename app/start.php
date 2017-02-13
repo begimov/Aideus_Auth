@@ -3,10 +3,13 @@
 use Slim\App;
 use Slim\Views\Twig;
 use Slim\Flash\Messages;
+
 use Noodlehaus\Config;
+
 use Aideus\User\User;
 use Aideus\Helpers\Hash;
 use Aideus\Validation\Validator;
+use Aideus\Middleware\PreCheckMiddleware;
 
 session_cache_limiter(false);
 session_start();
@@ -28,6 +31,10 @@ require 'routes.php';
 
 $container = $app->getContainer();
 
+$app->add(new PreCheckMiddleware($container));
+
+$container['auth'] = false;
+
 $container['user'] = $container->factory(function($c) {
     return new User;
 });
@@ -41,7 +48,7 @@ $container['hash'] = function($c) {
 };
 
 $container['validator'] = function($c) {
-  return new Validator();
+  return new Validator($c->user);
 };
 
 $container['view'] = function ($c) {

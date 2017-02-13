@@ -14,8 +14,8 @@ $app->post('/signup', function($req, $res) {
     $validator = $this->validator;
 
     $validator->validate([
-        'email' => [$email, 'required|email'],
-        'username' => [$username, 'required|alnumDash|max(20)'],
+        'email' => [$email, 'required|email|uniqueEmail'],
+        'username' => [$username, 'required|alnumDash|max(20)|uniqueUsername'],
         'password' => [$password, 'required|min(6)'],
         'password_confirm' => [$passwordConfirm, 'required|matches(password)']
     ]);
@@ -28,7 +28,7 @@ $app->post('/signup', function($req, $res) {
         ]);
 
         $this->flash->addMessage('Msg', 'Thank you for signing up.');
-        return $res->withStatus(302)->withHeader('Location', '.');
+        return $res->withStatus(302)->withHeader('Location', $this->get('router')->pathFor('home'));
     }
 
     return $this->view->render($res, 'auth/signup.php', [
