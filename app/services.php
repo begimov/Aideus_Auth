@@ -32,7 +32,7 @@ return [
         return $view;
     },
     'mail' => function($c) {
-        $mailer = new PHPMailer();
+        $mailer = new PHPMailer(true);
 
         $mailerSettings = $c['app']['mail'];
 

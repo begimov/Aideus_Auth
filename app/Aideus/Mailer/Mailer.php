@@ -14,19 +14,25 @@ class Mailer
       $this->mailer = $mailer;
   }
 
-  public function send($template, $data, $cb)
+  public function send($res, $template, $data, $cb)
   {
+
       $msg = new Message($this->mailer);
 
       foreach ($data as $key => $value) {
           $this->view[$key] = $value;
       }
 
-      //$this->view->render($res, $template)
-      $msg->setBody('dfgdfgdfg');
+      $msg->setBody($this->view->render($res, $template));
 
       call_user_func($cb, $msg);
 
-      $this->mailer->send();
+      try {
+          $this->mailer->send();
+      } catch (phpmailerException $e) {
+          echo $e->errorMessage();
+      } catch (Exception $e) {
+          echo $e->getMessage();
+      }
   }
 }

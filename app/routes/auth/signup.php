@@ -27,7 +27,7 @@ $app->post('/signup', function($req, $res) {
           'password' => $this->hash->generatePasswordHash($password)
         ]);
 
-        $this->mail->send('mail/auth/signedup.php', ['user' => $user], function($msg) {
+        $this->mail->send($res, 'mail/auth/signedup.php', ['user' => $user], function($msg) use ($email) {
             $msg->sendTo($email);
             $msg->setSubject('Thank you for signing up');
         });
