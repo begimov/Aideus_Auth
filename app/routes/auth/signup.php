@@ -21,11 +21,16 @@ $app->post('/signup', function($req, $res) {
     ]);
 
     if($validator->passes()) {
-        $this->user->create([
+        $user = $this->user->create([
           'email' => $email,
           'username' => $username,
           'password' => $this->hash->generatePasswordHash($password)
         ]);
+
+        $this->mail->send('mail/auth/signedup.php', ['user' => $user], function($msg) {
+            $msg->sendTo($email);
+            $msg->setSubject('Thank you for signing up');
+        });
 
         $this->flash->addMessage('Msg', 'Thank you for signing up.');
         return $res->withStatus(302)->withHeader('Location', $this->get('router')->pathFor('home'));

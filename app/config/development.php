@@ -28,8 +28,8 @@ return [
       'smtp_auth' => true,
       'smtp_secure' => 'tls',
       'host' => 'smtp.gmail.com',
-      'username' => 'begimov@aideus.com',
-      'password' => '',
+      'username' => 'aideus@aideus.com',
+      'password' => 'xyzAxyz0101',
       'port' => 587,
       'html' => true
     ],
