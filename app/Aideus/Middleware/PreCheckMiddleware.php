@@ -13,12 +13,10 @@ class PreCheckMiddleware
 
     public function __invoke($request, $response, $next)
     {
-        // $response->getBody()->write('BEFORE');
         $this->run();
-        // $request = $request->withAttribute('foo', 'bar');
-        // $foo = $request->getAttribute('foo');
+
         $response = $next($request, $response);
-        // $response->getBody()->write('AFTER');
+
         return $response;
     }
 

@@ -12,16 +12,21 @@ return [
     'user' => $container->factory(function($c) {
         return new User;
     }),
+
     'auth' => false,
+
     'flash' => function() {
         return new Messages();
     },
+
     'hash' => function($c) {
         return new Hash($c);
     },
+
     'validator' => function($c) {
         return new Validator($c->user);
     },
+
     'view' => function ($c) {
         $view = new Twig(INC_ROOT . '/app/views', [
           //TODO Cache path set up
@@ -31,6 +36,7 @@ return [
         $view->addExtension(new Slim\Views\TwigExtension($c['router'], $basePath));
         return $view;
     },
+    
     'mail' => function($c) {
         $mailer = new PHPMailer(true);
 

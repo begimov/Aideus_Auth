@@ -4,19 +4,25 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
 $capsule = new Capsule;
 
-$getConfig = function ($name) use ($app) {
-    return $app->getContainer()->get('app')['db'][$name];
+$getConfig = function ($name) use ($container) {
+    return $container['app']['db'][$name];
 };
 
-$capsule->addConnection([
-    'driver' => $getConfig('driver'),
-    'host' => $getConfig('host'),
-    'database' => $getConfig('name'),
-    'username' => $getConfig('username'),
-    'password' => $getConfig('password'),
-    'charset' => $getConfig('charset'),
-    'collation' => $getConfig('collation'),
-    'prefix' => $getConfig('prefix'),
-]);
+$configParams = [
+  'driver',
+  'host',
+  'database',
+  'username',
+  'password',
+  'charset',
+  'collation',
+  'prefix'
+];
+
+foreach ($configParams as $value) {
+  $configConnection[$value] = $getConfig($value);
+}
+
+$capsule->addConnection($configConnection);
 
 $capsule->bootELoquent();
