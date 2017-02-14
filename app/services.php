@@ -8,6 +8,7 @@ use Aideus\User\User;
 use Aideus\Helpers\Hash;
 use Aideus\Validation\Validator;
 use Aideus\Mailer\Mailer;
+use Aideus\Publication\Publication;
 
 return [
     'user' => $container->factory(function($c) {
@@ -59,5 +60,9 @@ return [
     'random' => function($c) {
         $factory = new RandomLib;
         return $factory->getMediumStrengthGenerator();
+    },
+
+    'publications' => function($c) {
+        return new Publication;
     }
 ];

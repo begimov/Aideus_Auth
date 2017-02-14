@@ -32,19 +32,35 @@
     <div class="row">
       <div class="col-md-6">
         <h2 class="aideus-left">Publications on AGI.</h2>
-        <p class="aideus-desc">
-          Potapov A., Rodionov S., Potapova V. «Real-time GA-based Probabilistic Programming in Application to Robot Control». B. Steunebrink et al. (Eds.): AGI 2016, Lecture Notes in Artificial Intelligence. Springer, 2016. V. 9782. P. 95–105.
-          [PDF]
-        </p>
-        <p class="aideus-desc">
-          Potapov A., Batishcheva V., Rodionov S. "Optimization Framework with Minimum Description Length Principle for Probabilistic Programming". J. Bieger, B. Goertzel, A. Potapov (Eds.): AGI 2015, Lecture Notes in Artificial Intelligence. Berlin: Springer, 2015. V. 9205. P. 331–340.
-          [PDF]
-        </p>
+        {% for p in agiPbl %}
+          <p class="aideus-desc">
+            {{ p.getAuthors() }}<br>
+            "{{ p.getTitle() }}".<br>
+            {{ p.getPublicationPlace() }}<br>
+            {% if p.getPdfLink() %}
+              <a href="{{ p.getPdfLink() }}" class="text-primary">Download PDF</a><br>
+            {% endif %}
+            {% if p.getWebLink() %}
+              <a href="{{ p.getWebLink() }}" class="text-primary">View</a><br>
+            {% endif %}
+          </p>
+        {% endfor %}
       </div>
       <div class="col-md-6">
         <h2 class="aideus-left">Previous publications.</h2>
-        <p class="aideus-desc">
-
+        {% for p in prevPbl %}
+          <p class="aideus-desc">
+            {{ p.getAuthors() }}<br>
+            "{{ p.getTitle() }}".<br>
+            {{ p.getPublicationPlace() }}<br>
+            {% if p.getPdfLink() %}
+              <a href="{{ p.getPdfLink() }}" class="text-primary">Download PDF</a><br>
+            {% endif %}
+            {% if p.getWebLink() %}
+              <a href="{{ p.getWebLink() }}" class="text-primary">View</a><br>
+            {% endif %}
+          </p>
+        {% endfor %}
         </p>
       </div>
     </div>
