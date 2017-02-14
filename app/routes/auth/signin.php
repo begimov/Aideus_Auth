@@ -1,11 +1,16 @@
 <?php
 
 $app->get('/signin', function($req, $res, $args) {
-  $messages = $this->flash->getMessages();
-  return $this->view->render($res, 'auth/signin.php', [
-    'flashError' => $messages['Msg'][0]
-  ]);
-})->setName('signin');
+
+    $messages = $this->flash->getMessages();
+
+    return $this->view->render($res, 'auth/signin.php', [
+
+      'flashError' => $messages['Msg'][0]
+
+    ]);
+
+  })->setName('signin')->add($guestRequired($container));
 
 $app->post('/signin', function($req, $res, $args) {
 
@@ -61,4 +66,4 @@ $app->post('/signin', function($req, $res, $args) {
         'requestData' => $data
     ]);
 
-})->setName('signin_post');
+})->setName('signin_post')->add($guestRequired($container));

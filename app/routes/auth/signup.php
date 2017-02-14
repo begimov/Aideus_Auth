@@ -1,11 +1,16 @@
 <?php
 
 $app->get('/signup', function($req, $res, $args) {
+
     $messages = $this->flash->getMessages();
+
     return $this->view->render($res, 'auth/signup.php', [
+
         'flashError' => $messages['Msg'][0]
+
     ]);
-})->setName('signup');
+
+  })->setName('signup')->add($guestRequired($container));
 
 $app->post('/signup', function($req, $res) {
 
@@ -64,4 +69,4 @@ $app->post('/signup', function($req, $res) {
         'requestData' => $data
     ]);
 
-})->setName('signup_post');
+})->setName('signup_post')->add($guestRequired($container));

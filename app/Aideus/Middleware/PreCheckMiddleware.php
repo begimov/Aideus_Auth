@@ -24,13 +24,11 @@ class PreCheckMiddleware
     {
       $sessionName = $_SESSION[$this->container['app']['auth']['session']];
 
-      $containerAuth = $this->container->auth;
-
         if (isset($sessionName)) {
-            $containerAuth = $this->container->user->where('id', $sessionName)->first();
+            $this->container->auth = $this->container->user->where('id', $sessionName)->first();
         }
-        
-        $this->container->view['auth'] = $containerAuth;
+
+        $this->container->view['auth'] = $this->container->auth;
         $this->container->view['baseUrl'] = $this->container['app']['url'];
     }
 }

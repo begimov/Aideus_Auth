@@ -24,4 +24,4 @@ $app->get('/activate', function($req, $res, $args) {
         return $res->withStatus(302)->withHeader('Location', $this->get('router')->pathFor('home'));
     }
 
-})->setName('activate');
+})->setName('activate')->add($guestRequired($container));

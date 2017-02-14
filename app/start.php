@@ -23,6 +23,7 @@ $app = new App($settings);
 $container = $app->getContainer();
 
 require 'database.php';
+require 'filters.php';
 require 'routes.php';
 
 $app->add(new PreCheckMiddleware($container));
