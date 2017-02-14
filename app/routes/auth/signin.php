@@ -32,8 +32,12 @@ $app->post('/signin', function($req, $res, $args) {
     if($validator->passes()) {
 
         $user = $this->user
-            ->where('username', $identifier)
-            ->orWhere('email',$identifier)
+            ->where(function ($app) use ($identifier) {
+                $app
+                  ->where('username', '=', $identifier)
+                  ->orWhere('email', '=', $identifier);
+            })
+            ->where('active', true)
             ->first();
 
         $router = $this->get('router');

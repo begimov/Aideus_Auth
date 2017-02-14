@@ -2,6 +2,7 @@
 
 use Slim\Views\Twig;
 use Slim\Flash\Messages;
+use RandomLib\Factory as RandomLib;
 
 use Aideus\User\User;
 use Aideus\Helpers\Hash;
@@ -36,7 +37,7 @@ return [
         $view->addExtension(new Slim\Views\TwigExtension($c['router'], $basePath));
         return $view;
     },
-    
+
     'mail' => function($c) {
         $mailer = new PHPMailer(true);
 
@@ -53,5 +54,10 @@ return [
         $mailer->setFrom('aideus@aideus.com', 'Aideus');
 
         return new Mailer($c->view, $mailer);
+    },
+
+    'random' => function($c) {
+        $factory = new RandomLib;
+        return $factory->getMediumStrengthGenerator();
     }
 ];

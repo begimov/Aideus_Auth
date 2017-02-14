@@ -26,6 +26,14 @@ class User extends Eloquent
     }
 
     public function getName() {
-      return $this->getFullName() ?: $this->username;
+        return $this->getFullName() ?: $this->username;
+    }
+
+    public function activateAccount()
+    {
+        $this->update([
+            'active' => true,
+            'active_hash' => null
+        ]);
     }
 }

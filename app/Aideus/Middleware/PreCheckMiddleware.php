@@ -28,8 +28,9 @@ class PreCheckMiddleware
 
         if (isset($sessionName)) {
             $containerAuth = $this->container->user->where('id', $sessionName)->first();
-
-            $this->container->view['auth'] = $containerAuth;
         }
+        
+        $this->container->view['auth'] = $containerAuth;
+        $this->container->view['baseUrl'] = $this->container['app']['url'];
     }
 }

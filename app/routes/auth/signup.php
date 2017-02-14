@@ -1,7 +1,10 @@
 <?php
 
 $app->get('/signup', function($req, $res, $args) {
-    return $this->view->render($res, 'auth/signup.php');
+    $messages = $this->flash->getMessages();
+    return $this->view->render($res, 'auth/signup.php', [
+        'flashError' => $messages['Msg'][0]
+    ]);
 })->setName('signup');
 
 $app->post('/signup', function($req, $res) {
@@ -14,7 +17,9 @@ $app->post('/signup', function($req, $res) {
         'email',
         'username',
         'password',
-        'password_confirm'
+        'password_confirm',
+        'active',
+        'active_hash'
     ];
 
     $data = $req->getParsedBody();
@@ -35,13 +40,17 @@ $app->post('/signup', function($req, $res) {
 
     if($validator->passes()) {
 
+        $identifier = $this->random->generateString(128);
+
         $user = $this->user->create([
           $formNames[0] => $email,
           $formNames[1] => $username,
-          $formNames[2] => $this->hash->generatePasswordHash($password)
+          $formNames[2] => $this->hash->generatePasswordHash($password),
+          $formNames[4] => false,
+          $formNames[5] => $this->hash->generateHash($identifier)
         ]);
 
-        $this->mail->send($res, $templatePath, ['user' => $user], function($msg) use ($email, $emailSubject) {
+        $this->mail->send($res, $templatePath, ['user' => $user, 'identifier' => $identifier], function($msg) use ($email, $emailSubject) {
             $msg->sendTo($email);
             $msg->setSubject($emailSubject);
         });
