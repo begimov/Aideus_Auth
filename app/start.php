@@ -3,6 +3,7 @@
 use Slim\App;
 use Noodlehaus\Config;
 use Aideus\Middleware\PreCheckMiddleware;
+use Aideus\Middleware\CsrfMiddleware;
 
 session_cache_limiter(false);
 session_start();
@@ -27,6 +28,7 @@ require 'filters.php';
 require 'routes.php';
 
 $app->add(new PreCheckMiddleware($container));
+$app->add(new CsrfMiddleware($container));
 
 $services = require 'services.php';
 

@@ -37,6 +37,7 @@
           {% endif %}
         </div>
         <input type="submit" class="btn btn-default" value="Sign up">
+        <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
     </form>
   </div>
   <div class="col-md-6"></div>
