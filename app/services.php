@@ -2,6 +2,7 @@
 
 use Slim\Views\Twig;
 use Slim\Flash\Messages;
+use Slim\Http\Cookies;
 use RandomLib\Factory as RandomLib;
 
 use Aideus\User\User;
@@ -64,5 +65,6 @@ return [
 
     'publications' => function($c) {
         return new Publication;
-    }
+    },
+
 ];

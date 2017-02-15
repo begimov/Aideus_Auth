@@ -36,4 +36,17 @@ class User extends Eloquent
             'active_hash' => null
         ]);
     }
+
+    public function updateRememberStatus($remembermeId, $remembermeToken)
+    {
+        $this->update([
+            'remember_identifier' => $remembermeId,
+            'remember_token' => $remembermeToken
+        ]);
+    }
+
+    public function removeRememberStatus()
+    {
+        $this->updateRememberStatus(null, null);
+    }
 }

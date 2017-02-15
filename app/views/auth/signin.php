@@ -22,6 +22,11 @@
               <p class="text-danger">{{  errors.first('password') }}</p>
           {% endif %}
         </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="rememberme"> Remember me
+          </label>
+        </div>
         <input type="submit" class="btn btn-default" value="Sign in">
         <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
     </form>

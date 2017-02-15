@@ -1,5 +1,9 @@
 <?php
 
+use Carbon\Carbon;
+use Dflydev\FigCookies\SetCookie;
+use Dflydev\FigCookies\FigResponseCookies;
+
 $app->get('/signin', function($req, $res, $args) {
 
     $messages = $this->flash->getMessages();
@@ -19,13 +23,15 @@ $app->post('/signin', function($req, $res, $args) {
 
     $formNames = [
         'identifier',
-        'password'
+        'password',
+        'rememberme'
     ];
 
     $data = $req->getParsedBody();
 
     $identifier = $data[$formNames[0]];
     $password = $data[$formNames[1]];
+    $rememberme = $data[$formNames[2]];
 
     $validator = $this->validator;
 
@@ -50,6 +56,22 @@ $app->post('/signin', function($req, $res, $args) {
         if ($user && $this->hash->passwordCheck($password, $user->password)) {
 
             $_SESSION[$this['app']['auth']['session']] = $user->id;
+
+            if ($rememberme === 'on') {
+
+                $remembermeId = $this->random->generateString(128);
+                $remembermeToken = $this->random->generateString(128);
+
+                $user->updateRememberStatus(
+                    $remembermeId,
+                    $this->hash->generateHash($remembermeToken)
+                );
+
+                $res = FigResponseCookies::set($res,
+                    SetCookie::create($this['app']['auth']['remember'])
+                        ->withValue("{$remembermeId}___{$remembermeToken}")
+                        ->withExpires(Carbon::parse('+4 week')->timestamp));
+            }
 
             $this->flash->addMessage('Msg', $flashSuccess);
 
