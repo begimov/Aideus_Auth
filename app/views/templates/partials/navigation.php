@@ -13,7 +13,6 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <!-- <li><a href="{{ path_for('home', { 'name': '' }) }}">Home</a></li> -->
         <li><a href="{{ path_for('research') }}">Research</a></li>
         <li><a href="{{ path_for('community') }}">Community</a></li>
       </ul>
@@ -22,8 +21,17 @@
           {% if auth.isAdmin() %}
             <li><a href="{{ path_for('admin') }}">Admin panel</a></li>
           {% endif %}
-            <li><a href="{{ path_for('user_profile', { 'username': auth.username }) }}">{{ auth.getName() }}</a></li>
-            <li><a href="{{ path_for('signout') }}">Sign out</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              {{ auth.getName() }} <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="{{ path_for('user_profile', { 'username': auth.username }) }}">Profile</a></li>
+              <li><a href="{{ path_for('settings') }}">Settings</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="{{ path_for('signout') }}">Sign out</a></li>
+            </ul>
+          </li>
         {% else %}
             <li><a href="{{ path_for('signup') }}">Sign up</a></li>
             <li><a href="{{ path_for('signin') }}">Sign in</a></li>

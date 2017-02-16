@@ -8,7 +8,7 @@
     <div class="aideus-icon">
       <img src="" alt="" class="img-rounded" width="128px" height="128px">
     </div>
-    <h1 class="aideus-title">Users</h1>
+    <h1 class="aideus-title">Community</h1>
     <div class="row">
       <div class="col-md-6">
         <h2 class="aideus-left">Users:</h2>

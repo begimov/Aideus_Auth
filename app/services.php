@@ -27,7 +27,7 @@ return [
     },
 
     'validator' => function($c) {
-        return new Validator($c->user);
+        return new Validator($c->user, $c->hash, $c->auth);
     },
 
     'view' => function ($c) {
@@ -70,9 +70,9 @@ return [
     'notFoundHandler' => function ($c) {
         return function ($request, $response) use ($c) {
             return $c['response']
-                ->withStatus(404)
+                ->withStatus(302)
                 ->withHeader('Content-Type', 'text/html')
-                ->write('Page not found!');
+                ->withHeader('Location', $c->get('router')->pathFor('home'));
     };
   }
 ];

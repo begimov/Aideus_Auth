@@ -11,28 +11,28 @@
       <div class="form-group">
           <label for="Email">Email address</label>
           <input type="text" class="form-control" name="email" placeholder="Email"{% if requestData['email'] %} value="{{ requestData['email'] }}" {% endif %}>
-          {% if errors.first('email') %}
+          {% if errors.has('email') %}
               <p class="text-danger">{{  errors.first('email') }}</p>
           {% endif %}
         </div>
         <div class="form-group">
           <label for="Username">Username</label>
           <input type="text" class="form-control" name="username" placeholder="Username"{% if requestData['username'] %} value="{{ requestData['username'] }}" {% endif %}>
-          {% if errors.first('username') %}
+          {% if errors.has('username') %}
               <p class="text-danger">{{  errors.first('username') }}</p>
           {% endif %}
         </div>
         <div class="form-group">
           <label for="Password">Password</label>
           <input type="password" class="form-control" name="password" placeholder="Password">
-          {% if errors.first('password') %}
+          {% if errors.has('password') %}
               <p class="text-danger">{{  errors.first('password') }}</p>
           {% endif %}
         </div>
         <div class="form-group">
           <label for="Password_confirm">Confirm password</label>
           <input type="password" class="form-control" name="password_confirm">
-          {% if errors.first('password_confirm') %}
+          {% if errors.has('password_confirm') %}
               <p class="text-danger">{{  errors.first('password_confirm') }}</p>
           {% endif %}
         </div>

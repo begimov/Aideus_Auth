@@ -11,14 +11,14 @@
       <div class="form-group">
           <label for="identifier">Email / Username</label>
           <input type="text" class="form-control" name="identifier" placeholder="Email / Username"{% if requestData['identifier'] %} value="{{ requestData['identifier'] }}" {% endif %}>
-          {% if errors.first('identifier') %}
+          {% if errors.has('identifier') %}
               <p class="text-danger">{{  errors.first('identifier') }}</p>
           {% endif %}
         </div>
         <div class="form-group">
           <label for="Password">Password</label>
           <input type="password" class="form-control" name="password" placeholder="Password">
-          {% if errors.first('password') %}
+          {% if errors.has('password') %}
               <p class="text-danger">{{  errors.first('password') }}</p>
           {% endif %}
         </div>

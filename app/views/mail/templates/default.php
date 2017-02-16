@@ -1,7 +1,3 @@
-{% if auth %}
-  <p>Hello, {{ auth.getName }}.</p>
-{% else %}
-  <p>Hello.</p>
-{% endif %}
+<p>Hello.</p>
 
 {% block content %}{% endblock %}

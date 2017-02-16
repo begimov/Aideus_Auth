@@ -13,3 +13,5 @@ require INC_ROOT . '/app/routes/community/community.php';
 require INC_ROOT . '/app/routes/user/profile.php';
 
 require INC_ROOT . '/app/routes/admin/admin.php';
+
+require INC_ROOT . '/app/routes/auth/settings/settings.php';
