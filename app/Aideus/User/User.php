@@ -49,4 +49,19 @@ class User extends Eloquent
     {
         $this->updateRememberStatus(null, null);
     }
+
+    public function hasPermission($permission)
+    {
+        return (bool) $this->permissions->{$permission};
+    }
+
+    public function isAdmin()
+    {
+        return $this->hasPermission('is_admin');
+    }
+
+    public function permissions()
+    {
+        return $this->hasOne('Aideus\User\UserPermission');
+    }
 }

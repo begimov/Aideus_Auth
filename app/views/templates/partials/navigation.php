@@ -15,10 +15,13 @@
       <ul class="nav navbar-nav">
         <!-- <li><a href="{{ path_for('home', { 'name': '' }) }}">Home</a></li> -->
         <li><a href="{{ path_for('research') }}">Research</a></li>
-        <li><a href="#">Community</a></li>
+        <li><a href="{{ path_for('community') }}">Community</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         {% if auth %}
+          {% if auth.isAdmin() %}
+            <li><a href="{{ path_for('admin') }}">Admin panel</a></li>
+          {% endif %}
             <li><a href="{{ path_for('user_profile', { 'username': auth.username }) }}">{{ auth.getName() }}</a></li>
             <li><a href="{{ path_for('signout') }}">Sign out</a></li>
         {% else %}

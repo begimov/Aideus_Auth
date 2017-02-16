@@ -1,5 +1,7 @@
 <?php
 
+use Aideus\User\UserPermission;
+
 $app->get('/signup', function($req, $res, $args) {
 
     $messages = $this->flash->getMessages();
@@ -16,7 +18,9 @@ $app->post('/signup', function($req, $res) {
 
     $templatePath = 'mail/auth/signedup.php';
 
-    $emailSubject = 'Thank you for signing up';
+    $emailSubject = 'Thank you for signing up.';
+
+    $flashActivation = 'Thank you for signing up. An activation email has been sent to your email address.';
 
     $formNames = [
         'email',
@@ -55,12 +59,14 @@ $app->post('/signup', function($req, $res) {
           $formNames[5] => $this->hash->generateHash($identifier)
         ]);
 
+        $user->permissions()->create(UserPermission::$defaultPermissions);
+
         $this->mail->send($res, $templatePath, ['user' => $user, 'identifier' => $identifier], function($msg) use ($email, $emailSubject) {
             $msg->sendTo($email);
             $msg->setSubject($emailSubject);
         });
 
-        $this->flash->addMessage('Msg', $emailSubject);
+        $this->flash->addMessage('Msg', $flashActivation);
         return $res->withStatus(302)->withHeader('Location', $this->get('router')->pathFor('home'));
     }
 

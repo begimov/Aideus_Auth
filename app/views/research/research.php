@@ -1,6 +1,6 @@
 {% extends 'templates/default.php' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Research{% endblock %}
 {% block css %}<link href="css/sub.css" rel="stylesheet">{% endblock %}
 
 {% block content %}
@@ -28,7 +28,7 @@
     <div class="aideus-icon">
       <img src="" alt="" class="img-rounded" width="128px" height="128px">
     </div>
-    <h2 class="aideus-title">Publications on AGI.</h2>
+    <h2 class="aideus-title">Publications</h2>
     <div class="row">
       <div class="col-md-6">
         <h2 class="aideus-left">Publications on AGI.</h2>
