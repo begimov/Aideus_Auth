@@ -19,7 +19,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         {% if auth %}
-            <li><a href="#">Signed in as {{ auth.getName() }}</a></li>
+            <li><a href="{{ path_for('user_profile', { 'username': auth.username }) }}">{{ auth.getName() }}</a></li>
             <li><a href="{{ path_for('signout') }}">Sign out</a></li>
         {% else %}
             <li><a href="{{ path_for('signup') }}">Sign up</a></li>
