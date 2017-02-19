@@ -16,6 +16,7 @@ class User extends Eloquent
         'active_hash',
         'remember_identifier',
         'remember_token',
+        'recover_hash'
     ];
 
     public function getFullName() {

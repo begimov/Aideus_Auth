@@ -29,6 +29,7 @@
         </div>
         <input type="submit" class="btn btn-default" value="Sign in">
         <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
+        <p><a href="{{ path_for('pass_recover') }}"></br>Forgot your password?</a></p>
     </form>
   </div>
   <div class="col-md-6"></div>
