@@ -16,7 +16,9 @@ class User extends Eloquent
         'active_hash',
         'remember_identifier',
         'remember_token',
-        'recover_hash'
+        'recover_hash',
+        'first_name',
+        'last_name'
     ];
 
     public function getFullName() {
@@ -64,5 +66,10 @@ class User extends Eloquent
     public function permissions()
     {
         return $this->hasOne('Aideus\User\UserPermission');
+    }
+
+    public function isSameUser($user1, $user2)
+    {
+        return $user1->id == $user2->id;
     }
 }

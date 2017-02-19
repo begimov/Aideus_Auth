@@ -26,7 +26,7 @@
               {{ auth.getName() }} <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="{{ path_for('user_profile', { 'username': auth.username }) }}">Profile</a></li>
+              <li><a href="{{ path_for('account_profile') }}">Profile</a></li>
               <li><a href="{{ path_for('settings') }}">Settings</a></li>
               <li role="separator" class="divider"></li>
               <li><a href="{{ path_for('signout') }}">Sign out</a></li>
