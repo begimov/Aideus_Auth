@@ -53,5 +53,4 @@ class Validator extends Violin
         }
         return false;
     }
-
 }

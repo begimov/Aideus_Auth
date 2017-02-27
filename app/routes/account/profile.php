@@ -12,7 +12,6 @@ $app->get('/account/profile-update', function ($req, $res, $args) {
 })->setName('update_profile')->add($authRequired($container));
 
 $app->post('/account/profile-update', function ($req, $res, $args) {
-
     $data = $req->getParsedBody();
 
     $firstName = $data['first_name'];
@@ -26,7 +25,7 @@ $app->post('/account/profile-update', function ($req, $res, $args) {
         'last_name' => [$lastName, 'alpha|max(50)'],
     ]);
 
-    if($validator->passes()) {
+    if ($validator->passes()) {
         $user = $this->auth;
 
         $user->update([
@@ -41,5 +40,4 @@ $app->post('/account/profile-update', function ($req, $res, $args) {
     return $this->view->render($res, 'account/update.php', [
         'errors' => $validator->errors()
     ]);
-
 })->setName('update_profile_post')->add($authRequired($container));

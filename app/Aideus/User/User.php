@@ -21,14 +21,16 @@ class User extends Eloquent
         'last_name'
     ];
 
-    public function getFullName() {
+    public function getFullName()
+    {
         if (!$this->first_name || !$this->last_name) {
             return null;
         }
         return "{$this->first_name} {$this->last_name}";
     }
 
-    public function getName() {
+    public function getName()
+    {
         return $this->getFullName() ?: $this->username;
     }
 

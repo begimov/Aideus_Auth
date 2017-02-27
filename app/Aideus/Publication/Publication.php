@@ -17,24 +17,28 @@ class Publication extends Eloquent
         'category'
     ];
 
-    public function getAuthors() {
+    public function getAuthors()
+    {
         return "{$this->authors}";
     }
 
-    public function getTitle() {
+    public function getTitle()
+    {
         return "{$this->title}";
     }
 
-    public function getPublicationPlace() {
+    public function getPublicationPlace()
+    {
         return "{$this->published_in}";
     }
 
-    public function getPdfLink() {
+    public function getPdfLink()
+    {
         return "{$this->pdf_link}";
     }
 
-    public function getWebLink() {
+    public function getWebLink()
+    {
         return "{$this->web_link}";
     }
-
 }

@@ -6,23 +6,23 @@ use Exception;
 
 class CsrfMiddleware
 {
-
     private $csrfKey;
 
     private $container;
 
-    public function __construct($container) {
+    public function __construct($container)
+    {
         $this->container = $container;
+
         $this->csrfKey = $this->container['app']['csrf']['key'];
     }
 
     public function __invoke($request, $response, $next)
     {
-
         $this->check($request);
 
         $response = $next($request, $response);
-        // after
+
         return $response;
     }
 
@@ -32,9 +32,12 @@ class CsrfMiddleware
 
         if (!isset($_SESSION[$this->csrfKey])) {
             $_SESSION[$this->csrfKey] = $this->container->hash->generateHash(
+
                 $this->container->random->generateString(128)
+
             );
         }
+        
         $token = $_SESSION[$this->csrfKey];
 
         if (in_array($method, ['POST', 'PUT', 'DELETE'])) {
@@ -46,7 +49,7 @@ class CsrfMiddleware
         }
 
         $this->container->view['csrf_key'] = $this->csrfKey;
-        $this->container->view['csrf_token'] = $token;
 
+        $this->container->view['csrf_token'] = $token;
     }
 }

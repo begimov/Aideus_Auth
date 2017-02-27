@@ -13,7 +13,7 @@ date_default_timezone_set('Europe/Moscow');
 define('INC_ROOT', dirname(__DIR__));
 require INC_ROOT . '/vendor/autoload.php';
 
-define('MODE', 'development'); //TODO mode change
+define('MODE', 'production'); //TODO mode change
 
 $settings = require INC_ROOT . '/app/config/' . MODE . '.php';
 

@@ -43,8 +43,8 @@ $app->post('/signin', function($req, $res, $args) {
     if($validator->passes()) {
 
         $user = $this->user
-            ->where(function ($app) use ($identifier) {
-                $app
+            ->where(function ($query) use ($identifier) {
+                $query
                   ->where('username', '=', $identifier)
                   ->orWhere('email', '=', $identifier);
             })
